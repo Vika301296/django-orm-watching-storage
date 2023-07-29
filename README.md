@@ -21,11 +21,8 @@ pip install -r requirements.txt
 - Cоздайте в корне файл .env
 ```
 ENGINE = django.db.backends.postgresql_psycopg2
-HOST = checkpoint.devman.org
-PORT = 5434
-NAME = checkpoint
-USER = <Ваш_юзернейм>
-PASSWORD = <Ваш_пароль>
+ALLOWED_HOSTS=['localhost', '127.0.0.1']
+DATABASE_URL=postgres://<Ваш_юзернейм>:<Ваш_пароль>@checkpoint.devman.org:5434/checkpoint
 SECRET_KEY = <Ваш_код>
 DEBUG = False
 ```
