@@ -5,29 +5,17 @@ from environs import Env
 env = Env()
 env.read_env()
 
-DATABASES = {
-    'default': {
-        'ENGINE': env('ENGINE'),
-        'HOST': env('HOST'),
-        'PORT': env('PORT'),
-        'NAME': env('NAME'),
-        'USER': 'guard',
-        # 'USER': env('USER'),
-        'PASSWORD': env('PASSWORD'),
-        # 'PASSWORD': 'osim5',
-    }
-}
+DATABASES = {"default": env.dj_db_url("DATABASE_URL")}
 
 INSTALLED_APPS = ['datacenter']
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = env.bool('DEBUG')
+DEBUG = env.bool('DEBUG', default=False)
 
 ROOT_URLCONF = 'project.urls'
 
-ALLOWED_HOSTS = ['*']
-
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES = [
